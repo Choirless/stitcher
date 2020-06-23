@@ -30,13 +30,12 @@ const pullFromCOS = async (cos, params, localFilename) => {
 // COS_INSTANCE_ID - COS service instance id
 // COS_BUCKET - name of COS bucket where files are stored
 const main = async (opts) => {
-
   opts.COS_ENDPOINT = opts.COS_ENDPOINT || opts.endpoint || 'https://s3.us.cloud-object-storage.appdomain.cloud'
-    cos_creds = opts.__bx_creds ? opts.__bx_creds['cloud-object-storage'] : undefined
-    if (cos_creds) {
-	opts.COS_API_KEY = opts.COS_API_KEY || cos_creds.apikey
-	opts.COS_INSTANCE_ID = opts.COS_INSTANCE_ID || cos_creds.resource_instance_id
-    }
+  const cosCreds = opts.__bx_creds ? opts.__bx_creds['cloud-object-storage'] : undefined
+  if (cosCreds) {
+    opts.COS_API_KEY = opts.COS_API_KEY || cosCreds.apikey
+    opts.COS_INSTANCE_ID = opts.COS_INSTANCE_ID || cosCreds.resource_instance_id
+  }
 
   // check for mandatory parameters
   const mandatoryParams = ['videos', 'width', 'height', 'margin', 'pan', 'center', 'reverbType', 'reverbMix', 'outputKey', 'COS_ENDPOINT', 'COS_API_KEY', 'COS_INSTANCE_ID']
