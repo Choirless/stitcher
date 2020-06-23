@@ -31,7 +31,7 @@ const pullFromCOS = async (cos, params, localFilename) => {
 // COS_BUCKET - name of COS bucket where files are stored
 const main = async (opts) => {
 
-  opts.COS_ENDPOINT = opts.COS_ENDPOINT || 'https://s3.us.cloud-object-storage.appdomain.cloud'
+  opts.COS_ENDPOINT = opts.COS_ENDPOINT || opts.endpoint || 'https://s3.us.cloud-object-storage.appdomain.cloud'
     cos_creds = opts.__bx_creds ? opts.__bx_creds['cloud-object-storage'] : undefined
     if (cos_creds) {
 	opts.COS_API_KEY = opts.COS_API_KEY || cos_creds.apikey
